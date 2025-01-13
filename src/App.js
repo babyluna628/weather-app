@@ -31,7 +31,9 @@ function App() {
   return (
     <div className="App">
       <WeatherSearch onSearch={fetchWeatherData} />
-      {error && <p>{error}</p>}
+      <br />
+      <br />
+      {error && <p style={{ textAlign: "center" }}>{error}</p>}
       <WeatherInfo data={weatherData} />
     </div>
   );

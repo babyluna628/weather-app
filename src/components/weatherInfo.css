@@ -1,5 +1,5 @@
 .weather-info {
-  background-color: #f0f0f0;
+  background-color: #f1eaea;
   border-radius: 10px;
   padding: 20px;
   max-width: 500px;
@@ -29,17 +29,17 @@
 .weather-details p,
 .sun-times p {
   margin: 5px 0;
-  color: #555;
+  color: #070707;
 }
 
 .temperature-section {
-  background-color: #d18ef0;
+  background-color: #ffffff;
 }
 
 .weather-details {
-  background-color: #fff0f5;
+  background-color: #ffffff;
 }
 
 .sun-times {
-  background-color: #fffacd;
+  background-color: #ffffff;
 }

@@ -1,0 +1,45 @@
+.weather-info {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.city-name {
+  color: #333;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.temperature-section,
+.weather-details,
+.sun-times {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.temperature-section p,
+.weather-details p,
+.sun-times p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.temperature-section {
+  background-color: #d18ef0;
+}
+
+.weather-details {
+  background-color: #fff0f5;
+}
+
+.sun-times {
+  background-color: #fffacd;
+}

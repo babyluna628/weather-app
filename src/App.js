@@ -7,6 +7,7 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
+  const [hourlyForecast, setHourlyForecast] = useState([]);
   const [error, setError] = useState(null);
 
   const fetchWeatherData = async (city) => {
@@ -14,6 +15,7 @@ function App() {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=kr&units=metric`
       );
+
       setWeatherData(response.data);
       setError(null);
     } catch (err) {
@@ -28,7 +30,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>세계 날씨 보기</h1>
       <WeatherSearch onSearch={fetchWeatherData} />
       {error && <p>{error}</p>}
       <WeatherInfo data={weatherData} />

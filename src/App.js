@@ -67,6 +67,7 @@ function App() {
           <Favorites
             favorites={favorites}
             onSelectFavorite={fetchWeatherData}
+            onToggleFavorite={toggleFavorite}
           />
         </div>
         <div className="weather-info-column">

@@ -22,9 +22,29 @@
   background-color: rgba(240, 240, 240, 0.7);
   border-radius: 5px;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .favorites li:hover {
   background-color: #e0e0e0;
+}
+
+.favorites li span {
+  flex-grow: 1;
+}
+
+.favorite-toggle {
+  background: none;
+  border: none;
+  color: gold;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.favorite-toggle:hover {
+  color: orange;
 }

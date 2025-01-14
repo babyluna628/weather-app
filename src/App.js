@@ -61,19 +61,15 @@ function App() {
         margin: "0 auto",
       }}
     >
-      <WeatherSearch
-        onSearch={fetchWeatherData}
-        onToggleFavorite={toggleFavorite}
-        isFavorite={favorites.includes(cityName)}
-      />
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ width: "20%", marginRight: "20px" }}>
+      <div style={{ width: "50%", marginBottom: "20px" }}>
+        <WeatherSearch
+          onSearch={fetchWeatherData}
+          onToggleFavorite={toggleFavorite}
+          isFavorite={favorites.includes(cityName)}
+        />
+      </div>
+      <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
+        <div style={{ width: "25%", paddingRight: "20px" }}>
           <Favorites
             favorites={favorites}
             onSelectFavorite={fetchWeatherData}
@@ -83,7 +79,7 @@ function App() {
           {error && <p style={{ textAlign: "center" }}>{error}</p>}
           <WeatherInfo data={weatherData} />
         </div>
-        <div style={{ width: "30%", marginLeft: "20px" }}>
+        <div style={{ width: "25%", paddingLeft: "20px" }}>
           <WeatherForecast data={forecastData} cityName={cityName} />
         </div>
       </div>

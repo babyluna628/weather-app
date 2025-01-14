@@ -11,8 +11,6 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   max-height: 560px;
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .weather-forecast h2 {

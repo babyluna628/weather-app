@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./weatherSearch.css";
 
-const WeatherSearch = ({ onSearch }) => {
+const WeatherSearch = ({ onSearch, onToggleFavorite, isFavorite }) => {
   const [city, setCity] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (city.trim() === "") {
+      alert("도시를 입력해주세요.");
+      return;
+    }
     onSearch(city);
     setCity("");
   };
@@ -26,6 +30,12 @@ const WeatherSearch = ({ onSearch }) => {
             검색
           </button>
         </form>
+        <button
+          onClick={() => onToggleFavorite(city)}
+          className="favorite-button"
+        >
+          {isFavorite ? "즐겨찾기 제거" : "즐겨찾기 추가"}
+        </button>
       </div>
     </div>
   );

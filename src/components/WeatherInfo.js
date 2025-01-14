@@ -67,8 +67,8 @@ const WeatherInfo = ({ data }) => {
       </div>
       <div className="sun-times">
         <p>
-          일출: {formatLocalTime(data.sys.sunrise)}{" "}
-          &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; 일몰:{" "}
+          일출🌞: {formatLocalTime(data.sys.sunrise)}{" "}
+          &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp; 일몰🌚:{" "}
           {formatLocalTime(data.sys.sunset)}
         </p>
       </div>

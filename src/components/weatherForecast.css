@@ -1,15 +1,24 @@
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .weather-forecast {
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
   background-color: #d6e6f5;
-  max-height: 550px; /* 최대 높이 설정 */
-  overflow-y: auto; /* 스크롤 가능하도록 설정 */
+  border-radius: 10px;
+  padding: 20px;
+  height: 100%; /* 부모 요소의 높이에 맞춤 */
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  max-height: 560px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .weather-forecast h2 {
   text-align: center;
   color: #333;
+  margin-bottom: 15px;
 }
 
 .forecast-item {
@@ -26,7 +35,9 @@
 
 .forecast-item p {
   margin: 0;
+  font-size: 1em;
 }
 .weather-icon {
-  width: 50px; /* 아이콘 크기 조정 */
+  width: 50px;
+  height: 50px;
 }

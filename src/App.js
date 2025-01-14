@@ -49,13 +49,21 @@ function App() {
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
+          maxWidth: "1000px",
         }}
       >
-        <div style={{ flex: "1", marginRight: "20px" }}>
+        <div style={{ flex: "1", margin: "0 10px" }}>
           {error && <p style={{ textAlign: "center" }}>{error}</p>}
           <WeatherInfo data={weatherData} />
         </div>
-        <div style={{ flex: "1" }}>
+        <div
+          style={{
+            flex: "1",
+            margin: "0 10px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <WeatherForecast data={forecastData} cityName={cityName} />{" "}
           {/* 도시 이름 전달 */}
         </div>

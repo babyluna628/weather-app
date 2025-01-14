@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./weatherInfo.css";
 
 const WeatherInfo = ({ data, isFavorite, onToggleFavorite }) => {
+  const [currentTime, setCurrentTime] = useState(Date.now());
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   if (!data) return null;
 
   const cityTimezoneOffset = data.timezone;
@@ -25,7 +34,7 @@ const WeatherInfo = ({ data, isFavorite, onToggleFavorite }) => {
   return (
     <div className="weather-info">
       <p style={{ textAlign: "center" }}>
-        {formatLocalTime(Math.floor(Date.now() / 1000))}
+        {formatLocalTime(Math.floor(currentTime / 1000))}
       </p>
       <div className="weather-header">
         <h2 className="city-name">

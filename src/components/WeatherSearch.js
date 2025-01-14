@@ -30,12 +30,6 @@ const WeatherSearch = ({ onSearch, onToggleFavorite, isFavorite }) => {
             검색
           </button>
         </form>
-        <button
-          onClick={() => onToggleFavorite(city)}
-          className="favorite-button"
-        >
-          {isFavorite ? "즐겨찾기 제거" : "즐겨찾기 추가"}
-        </button>
       </div>
     </div>
   );

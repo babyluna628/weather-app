@@ -4,6 +4,7 @@ import WeatherSearch from "./components/WeatherSearch";
 import WeatherInfo from "./components/WeatherInfo";
 import WeatherForecast from "./components/WeatherForecast";
 import Favorites from "./components/Favorites";
+import "./App.css";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -50,36 +51,26 @@ function App() {
   };
 
   return (
-    <div
-      className="App"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-        maxWidth: "1200px",
-        margin: "0 auto",
-      }}
-    >
-      <div style={{ width: "50%", marginBottom: "20px" }}>
-        <WeatherSearch
-          onSearch={fetchWeatherData}
-          onToggleFavorite={toggleFavorite}
-          isFavorite={favorites.includes(cityName)}
-        />
-      </div>
-      <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-        <div style={{ width: "25%", paddingRight: "20px" }}>
+    <div className="App">
+      <WeatherSearch onSearch={fetchWeatherData} />
+      <div className="weather-container">
+        <div className="favorites-column">
           <Favorites
             favorites={favorites}
             onSelectFavorite={fetchWeatherData}
           />
         </div>
-        <div style={{ width: "50%" }}>
-          {error && <p style={{ textAlign: "center" }}>{error}</p>}
-          <WeatherInfo data={weatherData} />
+        <div className="weather-info-column">
+          {error && <p>{error}</p>}
+          {weatherData && (
+            <WeatherInfo
+              data={weatherData}
+              isFavorite={favorites.includes(weatherData.name)}
+              onToggleFavorite={toggleFavorite}
+            />
+          )}
         </div>
-        <div style={{ width: "25%", paddingLeft: "20px" }}>
+        <div className="weather-forecast-column">
           <WeatherForecast data={forecastData} cityName={cityName} />
         </div>
       </div>

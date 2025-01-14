@@ -1,24 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./weatherInfo.css";
 
-const WeatherInfo = ({ data }) => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
+const WeatherInfo = ({ data, isFavorite, onToggleFavorite }) => {
   if (!data) return null;
-  //검색한 도시 시간가져오기
+
   const cityTimezoneOffset = data.timezone;
   const formatLocalTime = (timestamp) => {
     const date = new Date((timestamp + cityTimezoneOffset) * 1000);
     const options = {
       timeZone: "UTC",
-      month: "short", // 월을 영어 약자로 표시 (예: Jan, Feb, ...)
+      month: "short",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
@@ -27,12 +18,23 @@ const WeatherInfo = ({ data }) => {
     };
     return date.toLocaleString("en-US", options);
   };
-  //날씨 아이콘 url생성
+
   const weatherIconCode = data.weather[0].icon;
   const weatherIconUrl = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
 
   return (
     <div className="weather-info">
+      <div className="weather-header">
+        <h2 className="city-name">
+          {data.name}, {data.sys.country}
+        </h2>
+        <button
+          className={`favorite-star ${isFavorite ? "favorite" : ""}`}
+          onClick={() => onToggleFavorite(data.name)}
+        >
+          ★
+        </button>
+      </div>
       <p style={{ textAlign: "center" }}>
         {formatLocalTime(Math.floor(Date.now() / 1000))}
       </p>

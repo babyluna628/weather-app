@@ -1,0 +1,29 @@
+.favorites {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.favorites h2 {
+  text-align: center;
+}
+
+.favorites ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.favorites li {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.favorites li:hover {
+  background-color: #e0e0e0;
+}

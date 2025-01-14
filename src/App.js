@@ -3,6 +3,7 @@ import axios from "axios";
 import WeatherSearch from "./components/WeatherSearch";
 import WeatherInfo from "./components/WeatherInfo";
 import WeatherForecast from "./components/WeatherForecast";
+import Favorites from "./components/Favorites";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -10,11 +11,12 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
   const [error, setError] = useState(null);
-  const [cityName, setCityName] = useState("Seoul"); // 도시 이름 상태 추가
+  const [cityName, setCityName] = useState("Seoul");
+  const [favorites, setFavorites] = useState([]);
 
   const fetchWeatherData = async (city) => {
     try {
-      setCityName(city); // 도시 이름 업데이트
+      setCityName(city);
       const currentResponse = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=kr&units=metric`
       );
@@ -22,7 +24,6 @@ function App() {
       setWeatherData(currentResponse.data);
       setError(null);
 
-      // Fetching the 5-day/3-hour forecast
       const forecastResponse = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&lang=kr&units=metric`
       );
@@ -35,15 +36,30 @@ function App() {
   };
 
   useEffect(() => {
-    fetchWeatherData(cityName); // 초기 로딩 시 서울 날씨 표시
+    fetchWeatherData(cityName);
   }, []);
+
+  const toggleFavorite = (city) => {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.includes(city)) {
+        return prevFavorites.filter((fav) => fav !== city);
+      } else {
+        return [...prevFavorites, city];
+      }
+    });
+  };
 
   return (
     <div
       className="App"
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <WeatherSearch onSearch={fetchWeatherData} />
+      <Favorites favorites={favorites} onSelectFavorite={fetchWeatherData} />
+      <WeatherSearch
+        onSearch={fetchWeatherData}
+        onToggleFavorite={toggleFavorite}
+        isFavorite={favorites.includes(cityName)}
+      />
       <div
         style={{
           display: "flex",
@@ -64,8 +80,7 @@ function App() {
             flexDirection: "column",
           }}
         >
-          <WeatherForecast data={forecastData} cityName={cityName} />{" "}
-          {/* 도시 이름 전달 */}
+          <WeatherForecast data={forecastData} cityName={cityName} />
         </div>
       </div>
     </div>

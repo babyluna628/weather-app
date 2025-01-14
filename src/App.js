@@ -15,6 +15,11 @@ function App() {
   const [cityName, setCityName] = useState("Seoul");
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(storedFavorites);
+  }, []);
+
   const fetchWeatherData = async (city) => {
     try {
       setCityName(city);
@@ -42,11 +47,13 @@ function App() {
 
   const toggleFavorite = (city) => {
     setFavorites((prevFavorites) => {
-      if (prevFavorites.includes(city)) {
-        return prevFavorites.filter((fav) => fav !== city);
-      } else {
-        return [...prevFavorites, city];
-      }
+      const updatedFavorites = prevFavorites.includes(city)
+        ? prevFavorites.filter((fav) => fav !== city)
+        : [...prevFavorites, city];
+
+      // 업데이트된 즐겨찾기를 localStorage에 저장
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      return updatedFavorites;
     });
   };
 

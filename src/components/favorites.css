@@ -1,7 +1,6 @@
 .favorites {
   margin-top: 20px;
   width: 100%;
-  max-width: 1000px;
 }
 
 .favorites h2 {
@@ -12,16 +11,16 @@
   list-style-type: none;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .favorites li {
-  margin: 5px;
+  margin: 5px 0;
   padding: 5px 10px;
   background-color: #f0f0f0;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
 }
 
 .favorites li:hover {

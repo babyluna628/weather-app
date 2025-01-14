@@ -52,9 +52,15 @@ function App() {
   return (
     <div
       className="App"
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+        maxWidth: "1200px",
+        margin: "0 auto",
+      }}
     >
-      <Favorites favorites={favorites} onSelectFavorite={fetchWeatherData} />
       <WeatherSearch
         onSearch={fetchWeatherData}
         onToggleFavorite={toggleFavorite}
@@ -63,23 +69,21 @@ function App() {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
           width: "100%",
-          maxWidth: "1000px",
+          justifyContent: "space-between",
         }}
       >
-        <div style={{ flex: "1", margin: "0 10px" }}>
+        <div style={{ width: "20%", marginRight: "20px" }}>
+          <Favorites
+            favorites={favorites}
+            onSelectFavorite={fetchWeatherData}
+          />
+        </div>
+        <div style={{ width: "50%" }}>
           {error && <p style={{ textAlign: "center" }}>{error}</p>}
           <WeatherInfo data={weatherData} />
         </div>
-        <div
-          style={{
-            flex: "1",
-            margin: "0 10px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        <div style={{ width: "30%", marginLeft: "20px" }}>
           <WeatherForecast data={forecastData} cityName={cityName} />
         </div>
       </div>

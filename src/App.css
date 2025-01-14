@@ -9,27 +9,22 @@
 
 .search-container {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  max-width: 500px;
   margin-bottom: 20px;
 }
 
-.weather-container {
+.content-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  gap: 20px; /* 컨텐츠 사이의 간격 추가 */
 }
 
-.favorites-column {
-  width: 20%;
+.favorites-column,
+.weather-forecast-column {
+  width: 23%; /* 너비를 약간 줄임 */
 }
 
 .weather-info-column {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-}
-
-.weather-forecast-column {
-  width: 25%;
+  width: 40%;
 }

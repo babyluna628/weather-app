@@ -24,23 +24,21 @@ const WeatherInfo = ({ data, isFavorite, onToggleFavorite }) => {
 
   return (
     <div className="weather-info">
-      <div className="weather-header">
-        <h2 className="city-name">
-          {data.name}, {data.sys.country}
-        </h2>
-        <button
-          className={`favorite-star ${isFavorite ? "favorite" : ""}`}
-          onClick={() => onToggleFavorite(data.name)}
-        >
-          ★
-        </button>
-      </div>
       <p style={{ textAlign: "center" }}>
         {formatLocalTime(Math.floor(Date.now() / 1000))}
       </p>
-      <h2 className="city-name">
-        {data.name}, {data.sys.country}
-      </h2>
+      <div className="weather-header">
+        <h2 className="city-name">
+          {data.name}, {data.sys.country}
+          <button
+            className={`favorite-star ${isFavorite ? "favorite" : ""}`}
+            onClick={() => onToggleFavorite(data.name)}
+          >
+            ★
+          </button>
+        </h2>
+      </div>
+
       <div className="temperature-section">
         <img
           src={weatherIconUrl}

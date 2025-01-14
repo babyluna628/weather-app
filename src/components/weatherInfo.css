@@ -33,7 +33,7 @@
 }
 
 .weather-info {
-  background-color: #d6e6f5;
+  background-color: rgba(214, 230, 245, 0.5); /* d6e6f5 with 80% opacity */
   border-radius: 10px;
   padding: 20px;
   width: 100%;
@@ -56,13 +56,13 @@
 }
 
 .temperature-section {
-  background-color: #ffffff;
+  background-color: rgba(240, 240, 240, 0.7);
 }
 
 .weather-details {
-  background-color: #ffffff;
+  background-color: rgba(240, 240, 240, 0.7);
 }
 
 .sun-times {
-  background-color: #ffffff;
+  background-color: rgba(240, 240, 240, 0.7);
 }

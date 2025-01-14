@@ -4,7 +4,8 @@
 
 .weather-forecast {
   width: 100%;
-  background-color: #d6e6f5;
+  max-width: 500px;
+  background-color: rgba(214, 230, 245, 0.5);
   border-radius: 10px;
   padding: 20px;
   height: 100%;

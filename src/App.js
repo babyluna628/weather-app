@@ -52,7 +52,9 @@ function App() {
 
   return (
     <div className="App">
-      <WeatherSearch onSearch={fetchWeatherData} />
+      <div className="search-container">
+        <WeatherSearch onSearch={fetchWeatherData} />
+      </div>
       <div className="weather-container">
         <div className="favorites-column">
           <Favorites

@@ -11,6 +11,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   max-height: 560px;
+  max-width: 340px;
   width: 100%;
 }
 

@@ -12,7 +12,7 @@
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  max-height: 560px;
+  max-height: 540px;
 }
 
 .weather-forecast h2 {

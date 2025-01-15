@@ -5,6 +5,8 @@ import WeatherInfo from "./components/WeatherInfo";
 import WeatherForecast from "./components/WeatherForecast";
 import Favorites from "./components/Favorites";
 import "./App.css";
+import WeatherMap from "./components/WeatherMap";
+import "leaflet/dist/leaflet.css";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -87,6 +89,13 @@ function App() {
         <div className="weather-forecast-column">
           <WeatherForecast data={forecastData} cityName={cityName} />
         </div>
+      </div>
+      <br />
+      <br />
+      <div className="weather-map-column">
+        {weatherData && weatherData.coord && (
+          <WeatherMap lat={weatherData.coord.lat} lon={weatherData.coord.lon} />
+        )}
       </div>
     </div>
   );

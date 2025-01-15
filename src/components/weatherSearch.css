@@ -7,7 +7,7 @@
   letter-spacing: 2px;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(45deg, #4a90e2, #63b8ff);
+  background-color: rgb(5, 59, 109);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 10px;

@@ -56,7 +56,10 @@ function App() {
       return updatedFavorites;
     });
   };
-
+  const onReorderFavorites = (newFavorites) => {
+    setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+  };
   return (
     <div className="App">
       <div className="search-container">
@@ -68,6 +71,7 @@ function App() {
             favorites={favorites}
             onSelectFavorite={fetchWeatherData}
             onToggleFavorite={toggleFavorite}
+            onReorderFavorites={onReorderFavorites}
           />
         </div>
         <div className="weather-info-column">

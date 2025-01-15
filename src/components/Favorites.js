@@ -46,11 +46,11 @@ const Favorites = ({ favorites, onSelectFavorite, onToggleFavorite }) => {
             <span onClick={() => onSelectFavorite(city)}>
               {city}
               {weatherData[city] && (
-                <span className="weather-info">
+                <span>
                   <img
                     src={getWeatherIcon(weatherData[city].icon)}
                     alt={weatherData[city].weather}
-                    className="weather-icon"
+                    className="fweather-icon"
                   />
                   {weatherData[city].temp}°C
                 </span>

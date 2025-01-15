@@ -33,7 +33,7 @@ const WeatherInfo = ({ data, isFavorite, onToggleFavorite }) => {
 
   return (
     <div className="weather-info">
-      <p style={{ textAlign: "center" }}>
+      <p style={{ textAlign: "center" }} className="time">
         {formatLocalTime(Math.floor(currentTime / 1000))}
       </p>
       <div className="weather-header">

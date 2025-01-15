@@ -1,8 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./weatherSearch.css";
 
-const WeatherSearch = ({ onSearch, onToggleFavorite, isFavorite }) => {
+const WeatherSearch = ({ onSearch }) => {
   const [city, setCity] = useState("");
+  //const [suggestions, setSuggestions] = useState([]);
+  const autocompleteRef = useRef(null);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA7DmIbERxi7RsupsaKicPgIe5aRJNhxCQ&libraries=places`;
+    script.async = true;
+    document.body.appendChild(script);
+
+    script.onload = initAutocomplete;
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const initAutocomplete = () => {
+    autocompleteRef.current = new window.google.maps.places.Autocomplete(
+      document.getElementById("city-input"),
+      { types: ["(cities)"] }
+    );
+
+    autocompleteRef.current.addListener("place_changed", handlePlaceSelect);
+  };
+
+  const handlePlaceSelect = () => {
+    const addressObject = autocompleteRef.current.getPlace();
+    const address = addressObject.address_components;
+
+    if (address) {
+      setCity(addressObject.name);
+      onSearch(addressObject.name);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,7 +45,6 @@ const WeatherSearch = ({ onSearch, onToggleFavorite, isFavorite }) => {
       return;
     }
     onSearch(city);
-    setCity("");
   };
 
   return (
@@ -20,6 +53,7 @@ const WeatherSearch = ({ onSearch, onToggleFavorite, isFavorite }) => {
       <div className="weather-search">
         <form onSubmit={handleSubmit}>
           <input
+            id="city-input"
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}

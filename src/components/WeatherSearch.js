@@ -3,12 +3,11 @@ import "./weatherSearch.css";
 
 const WeatherSearch = ({ onSearch }) => {
   const [city, setCity] = useState("");
-  //const [suggestions, setSuggestions] = useState([]);
   const autocompleteRef = useRef(null);
 
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA7DmIbERxi7RsupsaKicPgIe5aRJNhxCQ&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
     script.async = true;
     document.body.appendChild(script);
 

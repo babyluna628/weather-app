@@ -58,46 +58,48 @@ const Favorites = ({
   return (
     <div className="favorites">
       <h2>즐겨찾기 목록</h2>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="favorites">
-          {(provided) => (
-            <ul {...provided.droppableProps} ref={provided.innerRef}>
-              {favorites.map((city, index) => (
-                <Draggable key={city} draggableId={city} index={index}>
-                  {(provided) => (
-                    <li
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <span onClick={() => onSelectFavorite(city)}>
-                        {city}
-                        {weatherData[city] && (
-                          <span>
-                            <img
-                              src={getWeatherIcon(weatherData[city].icon)}
-                              alt={weatherData[city].weather}
-                              className="fweather-icon"
-                            />
-                            {weatherData[city].temp}°C
-                          </span>
-                        )}
-                      </span>
-                      <button
-                        className="favorite-toggle"
-                        onClick={() => onToggleFavorite(city)}
+      <div className="favorites-list">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="favorites">
+            {(provided) => (
+              <ul {...provided.droppableProps} ref={provided.innerRef}>
+                {favorites.map((city, index) => (
+                  <Draggable key={city} draggableId={city} index={index}>
+                    {(provided) => (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
                       >
-                        ★
-                      </button>
-                    </li>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
+                        <span onClick={() => onSelectFavorite(city)}>
+                          {city}
+                          {weatherData[city] && (
+                            <span>
+                              <img
+                                src={getWeatherIcon(weatherData[city].icon)}
+                                alt={weatherData[city].weather}
+                                className="fweather-icon"
+                              />
+                              {weatherData[city].temp}°C
+                            </span>
+                          )}
+                        </span>
+                        <button
+                          className="favorite-toggle"
+                          onClick={() => onToggleFavorite(city)}
+                        >
+                          ★
+                        </button>
+                      </li>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
     </div>
   );
 };

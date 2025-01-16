@@ -12,7 +12,7 @@ const WeatherSearch = ({ onSearch }) => {
     document.body.appendChild(script);
 
     script.onload = initAutocomplete;
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => {
       document.body.removeChild(script);
     };

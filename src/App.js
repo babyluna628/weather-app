@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import WeatherSearch from "./components/WeatherSearch";
 import WeatherInfo from "./components/WeatherInfo";
@@ -22,7 +22,7 @@ function App() {
     setFavorites(storedFavorites);
   }, []);
 
-  const fetchWeatherData = async (city) => {
+  const fetchWeatherData = useCallback(async (city) => {
     try {
       setCityName(city);
       const currentResponse = await axios.get(
@@ -43,28 +43,28 @@ function App() {
       setForecastData(null);
       alert("날씨 정보를 가져오는데 실패했습니다.");
     }
-  };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    fetchWeatherData(cityName);
   }, []);
 
-  const toggleFavorite = (city) => {
+  useEffect(() => {
+    fetchWeatherData(cityName);
+  }, [cityName, fetchWeatherData]);
+
+  const toggleFavorite = useCallback((city) => {
     setFavorites((prevFavorites) => {
       const updatedFavorites = prevFavorites.includes(city)
         ? prevFavorites.filter((fav) => fav !== city)
         : [...prevFavorites, city];
 
-      // 업데이트된 즐겨찾기를 localStorage에 저장
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       return updatedFavorites;
     });
-  };
-  const onReorderFavorites = (newFavorites) => {
+  }, []);
+
+  const onReorderFavorites = useCallback((newFavorites) => {
     setFavorites(newFavorites);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
-  };
+  }, []);
+
   return (
     <div className="App">
       <div className="search-container">

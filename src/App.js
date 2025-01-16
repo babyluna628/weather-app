@@ -40,6 +40,8 @@ function App() {
     } catch (err) {
       setError("날씨 정보를 가져오는데 실패했습니다.");
       setWeatherData(null);
+      setForecastData(null);
+      alert("날씨 정보를 가져오는데 실패했습니다.");
     }
   };
 

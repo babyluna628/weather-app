@@ -48,5 +48,6 @@ Favorites: 즐겨찾기 관리 컴포넌트
 WeatherMap: 날씨 지도 컴포넌트
 
 주의사항
+
 OpenWeatherMap API와 Google Maps API 키가 필요합니다.
 실제 배포 시 API 키 보안에 주의해야 합니다.

@@ -11,14 +11,18 @@ Global Weather 앱은 전 세계 도시의 현재 날씨와 5일 예보를 제�
 \*날씨 지도: 선택한 도시의 위치를 지도에 표시하고, 온도, 구름, 강수량 등의 날씨 레이어를 선택할 수 있습니다.
 
 사용된 기술
+
 React
+
 Axios (API 요청)
 OpenWeatherMap API (날씨 데이터)
 Google Maps API (도시 자동완성)
 Leaflet (지도 표시)
 Local Storage (즐겨찾기 저장)
 
-설치 및 실행 방법 1.저장소를 클론합니다:
+설치 및 실행 방법
+
+1.저장소를 클론합니다:
 git clone [저장소 URL]
 
 2.프로젝트 디렉토리로 이동합니다:

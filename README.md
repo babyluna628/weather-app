@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+Global Weather 앱은 전 세계 도시의 현재 날씨와 5일 예보를 제공하는 React 기반의 웹 애플리케이션입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+주요 기능 \*도시 검색: 사용자가 원하는 도시의 날씨 정보를 검색할 수 있습니다.
 
-## Available Scripts
+\*현재 날씨: 선택한 도시의 현재 기온, 체감 온도, 날씨 상태, 습도, 풍속 등을 표시합니다.
 
-In the project directory, you can run:
+\*5일 예보: 선택한 도시의 5일 날씨 예보를 제공합니다.
 
-### `npm start`
+\*즐겨찾기: 자주 찾는 도시를 즐겨찾기에 추가하고 관리할 수 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+\*날씨 지도: 선택한 도시의 위치를 지도에 표시하고, 온도, 구름, 강수량 등의 날씨 레이어를 선택할 수 있습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+사용된 기술
+React
+Axios (API 요청)
+OpenWeatherMap API (날씨 데이터)
+Google Maps API (도시 자동완성)
+Leaflet (지도 표시)
+Local Storage (즐겨찾기 저장)
 
-### `npm test`
+설치 및 실행 방법 1.저장소를 클론합니다:
+git clone [저장소 URL]
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.프로젝트 디렉토리로 이동합니다:
+cd global-weather-app
 
-### `npm run build`
+3.필요한 패키지를 설치합니다:
+npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. .env 파일을 생성하고 필요한 API 키를 설정합니다:
+   REACT_APP_WEATHER_API_KEY=your_openweathermap_api_key
+   REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5.애플리케이션을 실행합니다:
+npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+컴포넌트 구조
 
-### `npm run eject`
+App: 메인 컴포넌트
+WeatherSearch: 도시 검색 컴포넌트
+WeatherInfo: 현재 날씨 정보 표시 컴포넌트
+WeatherForecast: 5일 예보 표시 컴포넌트
+Favorites: 즐겨찾기 관리 컴포넌트
+WeatherMap: 날씨 지도 컴포넌트
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+주의사항
+OpenWeatherMap API와 Google Maps API 키가 필요합니다.
+실제 배포 시 API 키 보안에 주의해야 합니다.

@@ -1,9 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./weatherSearch.css";
 
 const WeatherSearch = ({ onSearch }) => {
   const [city, setCity] = useState("");
   const autocompleteRef = useRef(null);
+
+  const handlePlaceSelect = useCallback(() => {
+    const addressObject = autocompleteRef.current.getPlace();
+    const address = addressObject.address_components;
+
+    if (address) {
+      setCity(addressObject.name);
+      onSearch(addressObject.name);
+    }
+  }, [onSearch]);
+
+  const initAutocomplete = useCallback(() => {
+    autocompleteRef.current = new window.google.maps.places.Autocomplete(
+      document.getElementById("city-input"),
+      { types: ["(cities)"] }
+    );
+
+    autocompleteRef.current.addListener("place_changed", handlePlaceSelect);
+  }, [handlePlaceSelect]);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -12,30 +31,10 @@ const WeatherSearch = ({ onSearch }) => {
     document.body.appendChild(script);
 
     script.onload = initAutocomplete;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => {
       document.body.removeChild(script);
     };
-  }, []);
-
-  const initAutocomplete = () => {
-    autocompleteRef.current = new window.google.maps.places.Autocomplete(
-      document.getElementById("city-input"),
-      { types: ["(cities)"] }
-    );
-
-    autocompleteRef.current.addListener("place_changed", handlePlaceSelect);
-  };
-
-  const handlePlaceSelect = () => {
-    const addressObject = autocompleteRef.current.getPlace();
-    const address = addressObject.address_components;
-
-    if (address) {
-      setCity(addressObject.name);
-      onSearch(addressObject.name);
-    }
-  };
+  }, [initAutocomplete]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

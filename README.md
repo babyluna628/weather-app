@@ -20,7 +20,7 @@ Google Maps API (도시 자동완성)
 Leaflet (지도 표시)
 Local Storage (즐겨찾기 저장)
 
-![GIF 즐겨찾기 목록 순서 변경과 검색한도시의 현재 날씨에 따라 배경변경](/images/bgchange.gif)
+![Image](https://github.com/user-attachments/assets/3b024740-29db-4eb6-9d04-110073ec26e1)
 
 설치 및 실행 방법
 

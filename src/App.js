@@ -24,6 +24,18 @@ function App() {
       Clouds: "/images/cloudy.jpg",
       Rain: "/images/rainny.jpg",
       Snow: "/images/snow.jpg",
+      Thunderstorm: "/images/thunderstorm.jpg",
+      Drizzle: "/images/drizzle.jpg",
+      Mist: "/images/mist.jpg",
+      Smoke: "/images/smoke.jpg",
+      Haze: "/images/haze.jpg",
+      Dust: "/images/smoke.jpg",
+      Fog: "/images/mist.jpg",
+      Sand: "/images/smoke.jpg",
+      Ash: "/images/ash.jpg",
+      Squall: "/images/squall.jpg",
+      Tornado: "/images/tornado.jpg",
+
       // 추가 날씨 조건에 대한 이미지를 여기에 추가
     }),
     []

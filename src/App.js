@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import WeatherSearch from "./components/WeatherSearch";
 import WeatherInfo from "./components/WeatherInfo";
@@ -16,34 +16,58 @@ function App() {
   const [error, setError] = useState(null);
   const [cityName, setCityName] = useState("Seoul");
   const [favorites, setFavorites] = useState([]);
+  const [favoritesWeatherData, setFavoritesWeatherData] = useState({});
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
   }, []);
 
-  const fetchWeatherData = useCallback(async (city) => {
-    try {
-      setCityName(city);
-      const currentResponse = await axios.get(
+  const cachedWeatherData = useMemo(() => {
+    const cache = {};
+    return async (city) => {
+      if (cache[city] && Date.now() - cache[city].timestamp < 3600000) {
+        return cache[city].data;
+      }
+      const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=kr&units=metric`
       );
-
-      setWeatherData(currentResponse.data);
-      setError(null);
-
-      const forecastResponse = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&lang=kr&units=metric`
-      );
-
-      setForecastData(forecastResponse.data);
-    } catch (err) {
-      setError("날씨 정보를 가져오는데 실패했습니다.");
-      setWeatherData(null);
-      setForecastData(null);
-      alert("날씨 정보를 가져오는데 실패했습니다.");
-    }
+      cache[city] = { data: response.data, timestamp: Date.now() };
+      return response.data;
+    };
   }, []);
+
+  const fetchWeatherData = useCallback(
+    async (city) => {
+      try {
+        setCityName(city);
+        const currentData = await cachedWeatherData(city);
+        setWeatherData(currentData);
+        setError(null);
+
+        const forecastResponse = await axios.get(
+          `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&lang=kr&units=metric`
+        );
+
+        setForecastData(forecastResponse.data);
+
+        setFavoritesWeatherData((prev) => ({
+          ...prev,
+          [city]: {
+            temp: Math.round(currentData.main.temp),
+            weather: currentData.weather[0].main,
+            icon: currentData.weather[0].icon,
+          },
+        }));
+      } catch (err) {
+        setError("날씨 정보를 가져오는데 실패했습니다.");
+        setWeatherData(null);
+        setForecastData(null);
+        alert("날씨 정보를 가져오는데 실패했습니다.");
+      }
+    },
+    [cachedWeatherData]
+  );
 
   useEffect(() => {
     fetchWeatherData(cityName);
@@ -77,6 +101,7 @@ function App() {
             onSelectFavorite={fetchWeatherData}
             onToggleFavorite={toggleFavorite}
             onReorderFavorites={onReorderFavorites}
+            weatherData={favoritesWeatherData}
           />
         </div>
         <div className="weather-info-column">

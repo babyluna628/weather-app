@@ -3,6 +3,7 @@ import "./weatherInfo.css";
 
 const WeatherInfo = ({ data, isFavorite, onToggleFavorite }) => {
   const [currentTime, setCurrentTime] = useState(Date.now());
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(Date.now());

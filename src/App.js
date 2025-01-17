@@ -18,10 +18,29 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [favoritesWeatherData, setFavoritesWeatherData] = useState({});
 
+  const weatherBackgrounds = useMemo(
+    () => ({
+      Clear: "/images/clearsky.jpg",
+      Clouds: "/images/cloudy.jpg",
+      Rain: "/images/rainny.jpg",
+      Snow: "/images/snow.jpg",
+      // 추가 날씨 조건에 대한 이미지를 여기에 추가
+    }),
+    []
+  );
+
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
   }, []);
+
+  const handleWeatherChange = useCallback(
+    (weatherCondition) => {
+      const backgroundUrl = weatherBackgrounds[weatherCondition] || "";
+      document.body.style.backgroundImage = `url(${backgroundUrl})`;
+    },
+    [weatherBackgrounds]
+  );
 
   const cachedWeatherData = useMemo(() => {
     const cache = {};
@@ -43,6 +62,7 @@ function App() {
         setCityName(city);
         const currentData = await cachedWeatherData(city);
         setWeatherData(currentData);
+        handleWeatherChange(currentData.weather[0].main);
         setError(null);
 
         const forecastResponse = await axios.get(
@@ -66,7 +86,7 @@ function App() {
         alert("날씨 정보를 가져오는데 실패했습니다.");
       }
     },
-    [cachedWeatherData]
+    [cachedWeatherData, handleWeatherChange]
   );
 
   useEffect(() => {
